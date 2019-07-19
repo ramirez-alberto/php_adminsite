@@ -1,0 +1,30 @@
+body{
+    padding: 50px 20px;
+    background:  rgba(123, 123, 123, 0.08);
+}
+
+.col-centro {
+    float: none !important;
+    margin: 0 auto ;
+    background: white;
+}
+
+.caja{
+
+    padding: 20px ;
+    box-shadow: 0px 0px 6px 1px rgba(2, 2, 2, 0.12);
+}
+
+form {
+    padding: 20px;
+    padding-bottom: 50px;
+    box-shadow: 0px 0px 6px 1px rgba(2, 2, 2, 0.12);
+}
+
+.input-group {
+    display: block !important;
+}
+
+input{
+    margin-bottom: 20px !important;
+}
