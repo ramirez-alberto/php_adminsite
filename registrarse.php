@@ -16,7 +16,7 @@ if ($_POST) {
 
 
 
-  $db = new connDB(HOST, USERNAME, PASSWD, DBNAME, PORT);
+
   /*   $db->prepararConsulta("SELECT email FROM usuarios");
   $db->ejecutarConsulta();
   $db->resultado()->bind_result($apellido);
@@ -33,6 +33,7 @@ if ($_POST) {
     } else {
       if (preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[_a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
         if ($contrasena === $confirma_con) {
+          $db = new connDB(HOST, USERNAME, PASSWD, DBNAME, PORT);
 
           if ($db->filtraConsulta('email', 'usuarios', "'$email'") == 1) {
             echo "Este email ya se encuentra registrado";
@@ -43,9 +44,11 @@ if ($_POST) {
 
             if (validarFoto($nombre)) {
 
+              $ruta_imagen = "{$dirImg}profile.jpg";
+
               if ($db->prepararConsulta("INSERT INTO usuarios 
               VALUES
-               (NULL,'$nombre', '$apellido', $dni, '$contrasena', $telefono, '$email')")) {
+               (NULL,'$nombre', '$apellido', $dni, '$contrasena', $telefono, '$email','$ruta_imagen')")) {
                 $db->ejecutarConsulta();
                 trigger_error("Te has registrado",E_USER_NOTICE);
                 $bandera = true;
@@ -122,7 +125,7 @@ if ($_POST) {
 
 
         <button type="submit" class="btn btn-primary float-left">Submit</button>
-        <a href="misitio.php" class="float-right">Regresar al inicio...</a>
+        <a href="index.php" class="float-right">Regresar al inicio...</a>
       </form>
 
     </div>
