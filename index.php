@@ -1,9 +1,16 @@
-<?php require './inc/header.php'; 
+<?php
+session_start();
+if(isset($_SESSION['id_usuario']) && isset($_SESSION['nombre'])){
+    header('Location: admin.php');
+    exit;
+}
+
+require './inc/header.php'; 
 ?>
 
 <div class="row text-center">
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-centro caja">
-        <form action="admin.php" method="post">
+        <form action="login.php" method="post">
             <legend>Inicio</legend>
             <div class="form-group">
                 <label for="email">Email</label>
