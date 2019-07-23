@@ -33,6 +33,16 @@ spl_autoload_register(function ($class) {
                         $_SESSION['nombre'] = ucwords($dbnombre); 
                         $_SESSION{'ruta_imagen'} = $dbruta_imagen;
 
+                        $caduca = time()+365*24*60*60;
+
+                        if($mantener == 'valido'){
+                            setcookie('id',$_SESSION['id_usuario'],$caduca ) ;
+                            setcookie('nombre',$_SESSION['nombre'],$caduca ) ;
+                            setcookie('imagen',$_SESSION['ruta_imagen'],$caduca) ;
+                            
+                            
+                        }
+
                         $db->conn->close();
                         header('Location: admin.php');
                         

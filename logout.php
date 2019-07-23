@@ -6,9 +6,21 @@ if(!$_SESSION['id_usuario'] && !$_SESSION['nombre']){
     header('Location: index.php');
     exit;
 }
+$caduca = time()-100;
+
+if(isset($_COOKIE['nombre'])){
+  setcookie('id',$_SESSION['id_usuario'],$caduca ) ;
+  setcookie('nombre',$_SESSION['nombre'],$caduca ) ;
+  setcookie('imagen',$_SESSION{'ruta_imagen'},$caduca) ;
+}
 
 session_unset();
 session_destroy();
+
+
+
+
+
 
 header('Refresh:3; url = index.php');
 

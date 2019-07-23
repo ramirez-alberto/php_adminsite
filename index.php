@@ -1,11 +1,17 @@
 <?php
 session_start();
-if(isset($_SESSION['id_usuario']) && isset($_SESSION['nombre'])){
+if ((isset($_SESSION['id_usuario']) && isset($_SESSION['nombre'])) || isset($_COOKIE['nombre'])) {
+
+    if (isset($_COOKIE['nombre'])) {
+        $_SESSION['id_usuario'] = $_COOKIE['id'];
+        $_SESSION['nombre'] = $_COOKIE['nombre'];
+        $_SESSION['ruta_imagen'] = $_COOKIE['imagen'];
+    }
     header('Location: admin.php');
     exit;
 }
 
-require './inc/header.php'; 
+require './inc/header.php';
 ?>
 
 <div class="row text-center">
@@ -21,13 +27,17 @@ require './inc/header.php';
                 </div>
                 <button type="submit" class="btn btn-primary float-left">Submit</button>
                 <a href="registrarse.php" class="float-right">Aun no registrado?</a>
+                <label for="" class="checkbox-inline">
+                    <input type="checkbox" name="mantener" value="valido">Mantener sesion iniciada.
+                </label>
+
             </div>
         </form>
     </div>
 </div>
 
 
- 
+
 
 
 
