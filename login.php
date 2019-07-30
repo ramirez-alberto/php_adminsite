@@ -1,76 +1,73 @@
-<?php 
-      session_start();
-      require './inc/header.php'; 
-      require './lib/config.php'; 
+<?php
+session_start();
+require './inc/header.php';
+require './lib/config.php';
 
 spl_autoload_register(function ($class) {
     require "./lib/$class.php";
-  });
+});
+
 
 
 ?>
 
  <?php
-     if($_POST){
+    if ($_POST) {
         extract($_POST, EXTR_OVERWRITE);
 
         $email = strtolower($email);
 
-        if($email && $contrasena){
-            if(preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[_a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)){
+        if ($email && $contrasena) {
+            if (preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[_a-z0-9-]+(\.[_a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
                 $db = new connDB(HOST, USERNAME, PASSWD, DBNAME, PORT);
-                $db->prepararConsulta("SELECT idUsuario,concat(nombre,' ',apellido) AS nombreapellido,email,contrasena,ruta_imagen FROM usuarios where contrasena='$contrasena' AND email = '$email'");
+                $db->prepararConsulta("SELECT idUsuario,concat(nombre,' ',apellido) AS nombreapellido,email,contrasena,ruta_imagen 
+                                       FROM usuarios 
+                                       where contrasena='$contrasena' 
+                                       AND email = '$email'");
                 $db->ejecutarConsulta();
-                $db->resultado()->bind_result($dbid,$dbnombre,$dbemail,$dbcontrasena,$dbruta_imagen);
+                $db->resultado()->bind_result($dbid, $dbnombre, $dbemail, $dbcontrasena, $dbruta_imagen);
                 $db->fetchConsulta();
 
                 $dbnombre = strtolower($dbnombre);
                 $dbemail = strtolower($dbemail);
 
-                    if( $dbcontrasena == $contrasena && $dbemail == $email){
+                if ($dbcontrasena == $contrasena && $dbemail == $email) {
 
-                        $_SESSION['id_usuario'] = $dbid;
-                        $_SESSION['nombre'] = ucwords($dbnombre); 
-                        $_SESSION{'ruta_imagen'} = $dbruta_imagen;
+                    $_SESSION['id_usuario'] = $dbid;
+                    $_SESSION['nombre'] = ucwords($dbnombre);
+                    $_SESSION{
+                    'ruta_imagen'} = $dbruta_imagen;
 
-                        $caduca = time()+365*24*60*60;
+                    $caduca = time() + 365 * 24 * 60 * 60;
 
-                        if($mantener == 'valido'){
-                            setcookie('id',$_SESSION['id_usuario'],$caduca ) ;
-                            setcookie('nombre',$_SESSION['nombre'],$caduca ) ;
-                            setcookie('imagen',$_SESSION['ruta_imagen'],$caduca) ;
-                            
-                            
-                        }
-
-                        $db->conn->close();
-                        header('Location: admin.php');
-                        
-                    }else{
-                        
-                        trigger_error("La contraseña o el email es incorrecto.",E_USER_NOTICE);
-                        header('Refresh:3;url=index.php');
-                        
+                    if ($mantener == 'valido') {
+                        setcookie('id', $_SESSION['id_usuario'], $caduca);
+                        setcookie('nombre', $_SESSION['nombre'], $caduca);
+                        setcookie('imagen', $_SESSION['ruta_imagen'], $caduca);
                     }
 
-               
+                    $db->conn->close();
+                    header('Location: admin.php');
+                } else {
 
-                
-
-            }else{
-                trigger_error("No es un email valido, intenta nuevamente.",E_USER_NOTICE);
+                    trigger_error("La contraseña o el email es incorrecto.", E_USER_NOTICE);
+                    header('Refresh:3;url=index.php');
+                }
+            } else {
+                trigger_error("No es un email valido, intenta nuevamente.", E_USER_NOTICE);
                 header('Refresh:3;url=index.php');
             }
-
-        }else{
-            trigger_error("Completa los datos para ingresar",E_USER_NOTICE);
+        } else {
+            trigger_error("Completa los datos para ingresar", E_USER_NOTICE);
             header("Refresh:3; url=index.php");
         }
+    } else {
+        header('Location: index.php');
+        exit;
+    }
 
-     } 
- 
- 
- ?>
+
+    ?>
 
 
 <?php require './inc/footer.php'; ?>

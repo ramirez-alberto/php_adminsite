@@ -14,6 +14,10 @@ if ((isset($_SESSION['id_usuario']) && isset($_SESSION['nombre'])) || isset($_CO
 require './inc/header.php';
 ?>
 
+
+<!--HTML------------------------------------------------------------------------------- -->
+
+
 <div class="row text-center">
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-centro caja">
         <form action="login.php" method="post">
@@ -28,7 +32,7 @@ require './inc/header.php';
                 <button type="submit" class="btn btn-primary float-left">Submit</button>
                 <a href="registrarse.php" class="float-right">Aun no registrado?</a>
                 <label for="" class="checkbox-inline">
-                    <input type="checkbox" name="mantener" value="valido">Mantener sesion iniciada.
+                    <input type="checkbox" name="mantener" value="valido">&nbsp&nbsp Mantener sesion iniciada.
                 </label>
 
             </div>
@@ -37,7 +41,7 @@ require './inc/header.php';
 </div>
 
 
-
+<!-- ------------------------------------------------------------------------------- -->
 
 
 
