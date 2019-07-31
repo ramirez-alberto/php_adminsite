@@ -28,13 +28,13 @@ $archivo  = $_SERVER['SCRIPT_NAME'];
 
 <?php if($archivo <> '/php/index.php' && $archivo <> '/php/logout.php' && $archivo <> '/php/registrarse.php'):?>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Portal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
+                <li class="nav-item <?php echo (($archivo <> '/php/index.php' ? 'active': '' ));?>">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">

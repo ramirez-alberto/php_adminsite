@@ -41,6 +41,10 @@ class connDB
         return $this->resultado;
     }
 
+    public function liberar(){
+        return $this->resultado->free_result();
+    }
+
 
     /* public function bindConsulta(){
         $this->resultado->bind_result($apellido);

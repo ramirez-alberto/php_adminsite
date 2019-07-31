@@ -20,6 +20,7 @@ endforeach;
 
 echo "{$f["hola"]} <br>";
 
+
 define("COLA","la mia");
 echo COLA;
 
@@ -42,3 +43,7 @@ class otraClase extends unaClase{ }
 $prueba = new otraClase();
 echo $prueba->ab;
 #echo $prueba -> c;
+
+
+var_dump("1234" == " 1234")
+?>

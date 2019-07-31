@@ -7,6 +7,7 @@ VALUES (NULL,'Matt','Damon',123456,'unacontra',1234567,'abc@gmail.com')");
 
 $prep->execute();
 
+
 /* $prep ->bind_result($apellido);
 
 
