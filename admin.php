@@ -17,7 +17,7 @@ spl_autoload_register(function ($class) {
 <!--HTML------------------------------------------------------------------------------- -->
 
 <div class="row text-center">
-    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-centro caja">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-centro caja">
         <div class="row ">
             <h2>Bienvenido <?php echo $_SESSION['nombre']; ?></h2>
             <img class='img-fluid' src="<?php echo $_SESSION['ruta_imagen']; ?>" alt="">

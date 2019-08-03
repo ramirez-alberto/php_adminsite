@@ -16,7 +16,13 @@ require './inc/header.php';
 
 
 <!--HTML------------------------------------------------------------------------------- -->
+<div class="row">
+            <div class="col-sm-12 text-center">
 
+                <h1>Portal WEB</h1>
+
+            </div>
+        </div>
 
 <div class="row text-center">
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-centro caja">
